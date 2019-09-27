@@ -46,7 +46,7 @@
 
 static int current_power_profile = -1;
 static bool is_low_power = false;
-static bool is_vsync_active = false;
+//static bool is_vsync_active = false;
 
 /**********************************************************
  *** HELPER FUNCTIONS
@@ -363,7 +363,7 @@ void power_set_interactive(int on) {
 void power_hint(power_hint_t hint, void *data) {
     int32_t val;
 
-    if (hint == POWER_HINT_SET_PROFILE) {
+    /*if (hint == POWER_HINT_SET_PROFILE) {
         if (DEBUG) ALOGV("%s: set profile %d", __func__, *(int32_t *)data);
         if (is_vsync_active) {
             is_vsync_active = false;
@@ -371,7 +371,7 @@ void power_hint(power_hint_t hint, void *data) {
         }
         set_power_profile(*(int32_t *)data);
 
-    }
+    }*/
 
     if (current_power_profile == PROFILE_POWER_SAVE) return;
 
@@ -391,10 +391,10 @@ void power_hint(power_hint_t hint, void *data) {
             if (DEBUG) ALOGV("%s: launch", __func__);
             boost(profiles[current_power_profile].launch_boost_time, true);
             break;
-        case POWER_HINT_CPU_BOOST:
+        /*case POWER_HINT_CPU_BOOST:
             if (DEBUG) ALOGV("%s: cpu_boost", __func__);
             boost((*(int32_t *)data) * US_TO_NS, false);
-            break;
+            break;*/
         default:
             break;
     }
